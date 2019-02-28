@@ -1,12 +1,11 @@
-import qiskit
-import qiskit.ignis
 import numpy
-from bme_fit import *
 import time
 import qiskit
 from qiskit import QuantumRegister, QuantumCircuit, ClassicalRegister, BasicAer
 from qiskit.quantum_info import state_fidelity
 import qiskit.ignis.verification.tomography as tomo
+
+from bme_fit import *
 
 #number of trials
 SHOTS = 10
@@ -26,8 +25,8 @@ circuit = QuantumCircuit(q_reg)
 circuit.x(q_reg[0])
 
 if(np.random.uniform(0,1)>1/2):
- print('x error')
- circuit.x(q_reg[0])
+    print('x error')
+    circuit.x(q_reg[0])
 
 # circuit.h(q_reg[0])
 
