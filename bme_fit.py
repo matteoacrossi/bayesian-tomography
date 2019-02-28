@@ -1,8 +1,8 @@
 import numpy as np
 
-def bme_fit(probs, basis_matrix, shots, nqubits):
+def bme_fit(probs, basis_matrix, shots):
 
-    N = 2 ** nqubits
+    N = int(np.sqrt(basis_matrix[0].shape[0]))
     SAMPLES = 400
 
     def logl(rho, meas_res):
@@ -42,8 +42,7 @@ def bme_fit(probs, basis_matrix, shots, nqubits):
 
     # print(counts)
 
-    meas_res = list(zip(basis_matrix,counts))
-    print('measurement results',meas_res)
+    meas_res = list(zip(basis_matrix,counts)) 
 
     res = montecarlo(N, lambda rho: logl(rho, meas_res), SAMPLES)
     return res
@@ -51,6 +50,7 @@ def bme_fit(probs, basis_matrix, shots, nqubits):
 def compute_std_error(obs, superoperator):
    return np.sqrt(np.trace(np.matmul(np.kron(obs,obs),superoperator))).real
 
+# From QuTiP
 def ginibre(N, rank=None):
    """
    Returns a Ginibre random density operator of dimension
