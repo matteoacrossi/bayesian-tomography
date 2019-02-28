@@ -47,7 +47,7 @@ probs, basis_matrix, weights = tomo.fitter_data(tomo_counts)
 print('tomography results',tomo_counts)
 
 #bayesian reconstruction of the density matrix and error on observable
-rho_fit, error_rho = bme_fit(probs, basis_matrix, SHOTS, n)
+rho_fit, error_rho = bme_fit(probs, basis_matrix, SHOTS)
 
 #maximum likelihood reconstruction of density matrix
 rho_mle = tomo.state_mle_fit(probs, basis_matrix, weights)
